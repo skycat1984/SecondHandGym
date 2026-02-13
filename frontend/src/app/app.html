@@ -1,0 +1,9 @@
+<div>
+  <h1>Second-Hand Börse1</h1>
+
+  <ul>
+    <li *ngFor="let item of items">
+      {{ item.title }} – {{ item.price ?? '-' }} € ({{ item.status }})
+    </li>
+  </ul>
+</div>
