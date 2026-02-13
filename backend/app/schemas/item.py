@@ -1,14 +1,14 @@
 from typing import Optional
 from datetime import datetime
-from sqlmodel import SQLModel
-from app.models.common import ItemStatus
+from sqlmodel import SQLModel, Field
+from ..models.common import ItemStatus
 
 
 class ItemCreate(SQLModel):
-    title: str
-    description: str
+    title: str = Field(min_length=1)
+    description: str = Field(min_length=1)
     category_id: int
-    price: Optional[float] = None
+    price: Optional[float] = Field(default=None, ge=0)
 
 
 class ItemRead(SQLModel):
@@ -20,3 +20,7 @@ class ItemRead(SQLModel):
     created_at: datetime
     updated_at: Optional[datetime]
     category_id: int
+
+
+class ItemStatusUpdate(SQLModel):
+    status: ItemStatus

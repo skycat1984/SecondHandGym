@@ -4,6 +4,8 @@ from sqlmodel import SQLModel
 
 from .db import engine
 from .api.items import router as items_router
+from .api.categories import router as categories_router
+from .api.contact_requests import router as contact_router
 
 # 👇 wichtig: DB-Modelle importieren, damit metadata sie kennt
 from .models.category import Category  # noqa: F401
@@ -20,6 +22,8 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="Second-Hand Boerse API", lifespan=lifespan)
 
 app.include_router(items_router)
+app.include_router(categories_router)
+app.include_router(contact_router)
 
 
 @app.get("/health")
